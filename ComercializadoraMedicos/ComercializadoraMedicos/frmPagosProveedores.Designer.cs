@@ -137,7 +137,7 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(41, 13);
             this.label5.TabIndex = 8;
-            this.label5.Text = "Bnaco:";
+            this.label5.Text = "Banco:";
             // 
             // cmbBanco
             // 
