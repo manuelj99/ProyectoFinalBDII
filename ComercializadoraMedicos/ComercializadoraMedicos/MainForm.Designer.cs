@@ -28,179 +28,198 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.btnProveedores = new System.Windows.Forms.Button();
-            this.btnProductos = new System.Windows.Forms.Button();
-            this.btnClientes = new System.Windows.Forms.Button();
-            this.btnVentas = new System.Windows.Forms.Button();
-            this.btnSalir = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnReportes = new System.Windows.Forms.Button();
-            this.btnOrdenesCompra = new System.Windows.Forms.Button();
-            this.btnRecepcionMercaderia = new System.Windows.Forms.Button();
-            this.btnPagosProveedores = new System.Windows.Forms.Button();
-            this.btnPagosClientes = new System.Windows.Forms.Button();
-            this.btnElaboracion = new System.Windows.Forms.Button();
-            this.btnArqueos = new System.Windows.Forms.Button();
-            this.btnBancos = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.panelTop = new System.Windows.Forms.Panel();
+            this.btnMenuSalir = new System.Windows.Forms.Button();
+            this.btnMenuConsultas = new System.Windows.Forms.Button();
+            this.btnMenuBancos = new System.Windows.Forms.Button();
+            this.btnMenuVentas = new System.Windows.Forms.Button();
+            this.btnMenuInventario = new System.Windows.Forms.Button();
+            this.lblTitulo = new System.Windows.Forms.Label();
+            this.panelSidebar = new System.Windows.Forms.Panel();
+            this.panelContent = new System.Windows.Forms.Panel();
+            this.lblBienvenida = new System.Windows.Forms.Label();
+            this.panelTop.SuspendLayout();
+            this.panelContent.SuspendLayout();
             this.SuspendLayout();
             // 
-            // btnProveedores
+            // panelTop
             // 
-            resources.ApplyResources(this.btnProveedores, "btnProveedores");
-            this.btnProveedores.Name = "btnProveedores";
-            this.btnProveedores.UseVisualStyleBackColor = true;
-            this.btnProveedores.Click += new System.EventHandler(this.btnProveedores_Click);
+            this.panelTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.panelTop.Controls.Add(this.btnMenuSalir);
+            this.panelTop.Controls.Add(this.btnMenuConsultas);
+            this.panelTop.Controls.Add(this.btnMenuBancos);
+            this.panelTop.Controls.Add(this.btnMenuVentas);
+            this.panelTop.Controls.Add(this.btnMenuInventario);
+            this.panelTop.Controls.Add(this.lblTitulo);
+            this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelTop.Location = new System.Drawing.Point(0, 0);
+            this.panelTop.Name = "panelTop";
+            this.panelTop.Size = new System.Drawing.Size(1200, 80);
+            this.panelTop.TabIndex = 0;
             // 
-            // btnProductos
+            // btnMenuSalir
             // 
-            resources.ApplyResources(this.btnProductos, "btnProductos");
-            this.btnProductos.Name = "btnProductos";
-            this.btnProductos.UseVisualStyleBackColor = true;
-            this.btnProductos.Click += new System.EventHandler(this.btnProductos_Click);
+            this.btnMenuSalir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(76)))), ((int)(((byte)(60)))));
+            this.btnMenuSalir.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnMenuSalir.FlatAppearance.BorderSize = 0;
+            this.btnMenuSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMenuSalir.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnMenuSalir.ForeColor = System.Drawing.Color.White;
+            this.btnMenuSalir.Location = new System.Drawing.Point(1050, 25);
+            this.btnMenuSalir.Name = "btnMenuSalir";
+            this.btnMenuSalir.Size = new System.Drawing.Size(120, 40);
+            this.btnMenuSalir.TabIndex = 5;
+            this.btnMenuSalir.Text = "Salir";
+            this.btnMenuSalir.UseVisualStyleBackColor = false;
+            this.btnMenuSalir.Click += new System.EventHandler(this.btnMenuSalir_Click);
+            this.btnMenuSalir.MouseEnter += new System.EventHandler(this.MenuButton_MouseEnter);
+            this.btnMenuSalir.MouseLeave += new System.EventHandler(this.MenuButton_MouseLeave);
             // 
-            // btnClientes
+            // btnMenuConsultas
             // 
-            resources.ApplyResources(this.btnClientes, "btnClientes");
-            this.btnClientes.Name = "btnClientes";
-            this.btnClientes.UseVisualStyleBackColor = true;
-            this.btnClientes.Click += new System.EventHandler(this.btnClientes_Click);
+            this.btnMenuConsultas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            this.btnMenuConsultas.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnMenuConsultas.FlatAppearance.BorderSize = 0;
+            this.btnMenuConsultas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMenuConsultas.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnMenuConsultas.ForeColor = System.Drawing.Color.White;
+            this.btnMenuConsultas.Location = new System.Drawing.Point(900, 25);
+            this.btnMenuConsultas.Name = "btnMenuConsultas";
+            this.btnMenuConsultas.Size = new System.Drawing.Size(120, 40);
+            this.btnMenuConsultas.TabIndex = 4;
+            this.btnMenuConsultas.Text = "Consultas";
+            this.btnMenuConsultas.UseVisualStyleBackColor = false;
+            this.btnMenuConsultas.Click += new System.EventHandler(this.btnMenuConsultas_Click);
+            this.btnMenuConsultas.MouseEnter += new System.EventHandler(this.MenuButton_MouseEnter);
+            this.btnMenuConsultas.MouseLeave += new System.EventHandler(this.MenuButton_MouseLeave);
             // 
-            // btnVentas
+            // btnMenuBancos
             // 
-            resources.ApplyResources(this.btnVentas, "btnVentas");
-            this.btnVentas.Name = "btnVentas";
-            this.btnVentas.UseVisualStyleBackColor = true;
-            this.btnVentas.Click += new System.EventHandler(this.btnVentas_Click);
+            this.btnMenuBancos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            this.btnMenuBancos.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnMenuBancos.FlatAppearance.BorderSize = 0;
+            this.btnMenuBancos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMenuBancos.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnMenuBancos.ForeColor = System.Drawing.Color.White;
+            this.btnMenuBancos.Location = new System.Drawing.Point(750, 25);
+            this.btnMenuBancos.Name = "btnMenuBancos";
+            this.btnMenuBancos.Size = new System.Drawing.Size(120, 40);
+            this.btnMenuBancos.TabIndex = 3;
+            this.btnMenuBancos.Text = "Bancos";
+            this.btnMenuBancos.UseVisualStyleBackColor = false;
+            this.btnMenuBancos.Click += new System.EventHandler(this.btnMenuBancos_Click);
+            this.btnMenuBancos.MouseEnter += new System.EventHandler(this.MenuButton_MouseEnter);
+            this.btnMenuBancos.MouseLeave += new System.EventHandler(this.MenuButton_MouseLeave);
             // 
-            // btnSalir
+            // btnMenuVentas
             // 
-            resources.ApplyResources(this.btnSalir, "btnSalir");
-            this.btnSalir.Name = "btnSalir";
-            this.btnSalir.UseVisualStyleBackColor = true;
-            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
+            this.btnMenuVentas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            this.btnMenuVentas.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnMenuVentas.FlatAppearance.BorderSize = 0;
+            this.btnMenuVentas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMenuVentas.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnMenuVentas.ForeColor = System.Drawing.Color.White;
+            this.btnMenuVentas.Location = new System.Drawing.Point(600, 25);
+            this.btnMenuVentas.Name = "btnMenuVentas";
+            this.btnMenuVentas.Size = new System.Drawing.Size(120, 40);
+            this.btnMenuVentas.TabIndex = 2;
+            this.btnMenuVentas.Text = "Ventas";
+            this.btnMenuVentas.UseVisualStyleBackColor = false;
+            this.btnMenuVentas.Click += new System.EventHandler(this.btnMenuVentas_Click);
+            this.btnMenuVentas.MouseEnter += new System.EventHandler(this.MenuButton_MouseEnter);
+            this.btnMenuVentas.MouseLeave += new System.EventHandler(this.MenuButton_MouseLeave);
             // 
-            // label1
+            // btnMenuInventario
             // 
-            resources.ApplyResources(this.label1, "label1");
-            this.label1.Name = "label1";
+            this.btnMenuInventario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            this.btnMenuInventario.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnMenuInventario.FlatAppearance.BorderSize = 0;
+            this.btnMenuInventario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMenuInventario.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnMenuInventario.ForeColor = System.Drawing.Color.White;
+            this.btnMenuInventario.Location = new System.Drawing.Point(450, 25);
+            this.btnMenuInventario.Name = "btnMenuInventario";
+            this.btnMenuInventario.Size = new System.Drawing.Size(120, 40);
+            this.btnMenuInventario.TabIndex = 1;
+            this.btnMenuInventario.Text = "Inventario";
+            this.btnMenuInventario.UseVisualStyleBackColor = false;
+            this.btnMenuInventario.Click += new System.EventHandler(this.btnMenuInventario_Click);
+            this.btnMenuInventario.MouseEnter += new System.EventHandler(this.MenuButton_MouseEnter);
+            this.btnMenuInventario.MouseLeave += new System.EventHandler(this.MenuButton_MouseLeave);
             // 
-            // btnReportes
+            // lblTitulo
             // 
-            resources.ApplyResources(this.btnReportes, "btnReportes");
-            this.btnReportes.Name = "btnReportes";
-            this.btnReportes.UseVisualStyleBackColor = true;
-            this.btnReportes.Click += new System.EventHandler(this.btnReportes_Click);
+            this.lblTitulo.AutoSize = true;
+            this.lblTitulo.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
+            this.lblTitulo.ForeColor = System.Drawing.Color.White;
+            this.lblTitulo.Location = new System.Drawing.Point(20, 25);
+            this.lblTitulo.Name = "lblTitulo";
+            this.lblTitulo.Size = new System.Drawing.Size(387, 30);
+            this.lblTitulo.TabIndex = 0;
+            this.lblTitulo.Text = "Comercializadora de Productos Médicos";
             // 
-            // btnOrdenesCompra
+            // panelSidebar
             // 
-            resources.ApplyResources(this.btnOrdenesCompra, "btnOrdenesCompra");
-            this.btnOrdenesCompra.Name = "btnOrdenesCompra";
-            this.btnOrdenesCompra.UseVisualStyleBackColor = true;
-            this.btnOrdenesCompra.Click += new System.EventHandler(this.btnOrdenesCompra_Click);
+            this.panelSidebar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(241)))));
+            this.panelSidebar.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelSidebar.Location = new System.Drawing.Point(0, 80);
+            this.panelSidebar.Name = "panelSidebar";
+            this.panelSidebar.Size = new System.Drawing.Size(250, 620);
+            this.panelSidebar.TabIndex = 1;
+            this.panelSidebar.Visible = false;
             // 
-            // btnRecepcionMercaderia
+            // panelContent
             // 
-            resources.ApplyResources(this.btnRecepcionMercaderia, "btnRecepcionMercaderia");
-            this.btnRecepcionMercaderia.Name = "btnRecepcionMercaderia";
-            this.btnRecepcionMercaderia.UseVisualStyleBackColor = true;
-            this.btnRecepcionMercaderia.Click += new System.EventHandler(this.btnRecepcionMercaderia_Click);
+            this.panelContent.BackColor = System.Drawing.Color.White;
+            this.panelContent.Controls.Add(this.lblBienvenida);
+            this.panelContent.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelContent.Location = new System.Drawing.Point(250, 80);
+            this.panelContent.Name = "panelContent";
+            this.panelContent.Size = new System.Drawing.Size(950, 620);
+            this.panelContent.TabIndex = 2;
             // 
-            // btnPagosProveedores
+            // lblBienvenida
             // 
-            resources.ApplyResources(this.btnPagosProveedores, "btnPagosProveedores");
-            this.btnPagosProveedores.Name = "btnPagosProveedores";
-            this.btnPagosProveedores.UseVisualStyleBackColor = true;
-            this.btnPagosProveedores.Click += new System.EventHandler(this.btnPagosProveedores_Click);
-            // 
-            // btnPagosClientes
-            // 
-            resources.ApplyResources(this.btnPagosClientes, "btnPagosClientes");
-            this.btnPagosClientes.Name = "btnPagosClientes";
-            this.btnPagosClientes.UseVisualStyleBackColor = true;
-            this.btnPagosClientes.Click += new System.EventHandler(this.btnPagosClientes_Click);
-            // 
-            // btnElaboracion
-            // 
-            resources.ApplyResources(this.btnElaboracion, "btnElaboracion");
-            this.btnElaboracion.Name = "btnElaboracion";
-            this.btnElaboracion.UseVisualStyleBackColor = true;
-            this.btnElaboracion.Click += new System.EventHandler(this.btnElaboracion_Click);
-            // 
-            // btnArqueos
-            // 
-            resources.ApplyResources(this.btnArqueos, "btnArqueos");
-            this.btnArqueos.Name = "btnArqueos";
-            this.btnArqueos.UseVisualStyleBackColor = true;
-            this.btnArqueos.Click += new System.EventHandler(this.btnArqueos_Click);
-            // 
-            // btnBancos
-            // 
-            resources.ApplyResources(this.btnBancos, "btnBancos");
-            this.btnBancos.Name = "btnBancos";
-            this.btnBancos.UseVisualStyleBackColor = true;
-            this.btnBancos.Click += new System.EventHandler(this.btnBancos_Click);
-            // 
-            // button1
-            // 
-            resources.ApplyResources(this.button1, "button1");
-            this.button1.Name = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button2
-            // 
-            resources.ApplyResources(this.button2, "button2");
-            this.button2.Name = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.lblBienvenida.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblBienvenida.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Bold);
+            this.lblBienvenida.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
+            this.lblBienvenida.Location = new System.Drawing.Point(0, 250);
+            this.lblBienvenida.Name = "lblBienvenida";
+            this.lblBienvenida.Size = new System.Drawing.Size(950, 120);
+            this.lblBienvenida.TabIndex = 0;
+            this.lblBienvenida.Text = "Bienvenido al Sistema\r\nSeleccione una opción del menú superior";
+            this.lblBienvenida.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // MainForm
             // 
-            resources.ApplyResources(this, "$this");
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.btnBancos);
-            this.Controls.Add(this.btnArqueos);
-            this.Controls.Add(this.btnElaboracion);
-            this.Controls.Add(this.btnPagosClientes);
-            this.Controls.Add(this.btnPagosProveedores);
-            this.Controls.Add(this.btnRecepcionMercaderia);
-            this.Controls.Add(this.btnOrdenesCompra);
-            this.Controls.Add(this.btnReportes);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.btnSalir);
-            this.Controls.Add(this.btnVentas);
-            this.Controls.Add(this.btnClientes);
-            this.Controls.Add(this.btnProductos);
-            this.Controls.Add(this.btnProveedores);
+            this.ClientSize = new System.Drawing.Size(1200, 700);
+            this.Controls.Add(this.panelContent);
+            this.Controls.Add(this.panelSidebar);
+            this.Controls.Add(this.panelTop);
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Comercializadora de Productos Médicos";
+            this.panelTop.ResumeLayout(false);
+            this.panelTop.PerformLayout();
+            this.panelContent.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button btnProveedores;
-        private System.Windows.Forms.Button btnProductos;
-        private System.Windows.Forms.Button btnClientes;
-        private System.Windows.Forms.Button btnVentas;
-        private System.Windows.Forms.Button btnSalir;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnReportes;
-        private System.Windows.Forms.Button btnOrdenesCompra;
-        private System.Windows.Forms.Button btnRecepcionMercaderia;
-        private System.Windows.Forms.Button btnPagosProveedores;
-        private System.Windows.Forms.Button btnPagosClientes;
-        private System.Windows.Forms.Button btnElaboracion;
-        private System.Windows.Forms.Button btnArqueos;
-        private System.Windows.Forms.Button btnBancos;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Panel panelTop;
+        private System.Windows.Forms.Panel panelSidebar;
+        private System.Windows.Forms.Panel panelContent;
+        private System.Windows.Forms.Label lblTitulo;
+        private System.Windows.Forms.Button btnMenuInventario;
+        private System.Windows.Forms.Button btnMenuVentas;
+        private System.Windows.Forms.Button btnMenuBancos;
+        private System.Windows.Forms.Button btnMenuConsultas;
+        private System.Windows.Forms.Button btnMenuSalir;
+        private System.Windows.Forms.Label lblBienvenida;
     }
 }
 
