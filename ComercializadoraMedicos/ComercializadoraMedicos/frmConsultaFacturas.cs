@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
@@ -261,11 +261,11 @@ Pendientes: {pendientes}";
                 // Información de la factura
                 Label lblInfo = new Label();
                 lblInfo.Text = $@"FACTURA #: {factura["id_venta"]}
-CLIENTE: {factura["Cliente"]}
-FECHA: {Convert.ToDateTime(factura["fecha_venta"]):dd/MM/yyyy}
-TIPO: {factura["tipo_venta"]}
-ESTADO: {factura["estado"]}
-TOTAL: {Convert.ToDecimal(factura["total"]):C2}";
+                CLIENTE: {factura["Cliente"]}
+                FECHA: {Convert.ToDateTime(factura["fecha_venta"]):dd/MM/yyyy}
+                TIPO: {factura["tipo_venta"]}
+                ESTADO: {factura["estado"]}
+                TOTAL: {Convert.ToDecimal(factura["total"]):C2}";
                 lblInfo.AutoSize = true;
                 lblInfo.Font = new Font("Arial", 10, FontStyle.Bold);
                 lblInfo.Location = new Point(10, 10);
@@ -336,12 +336,14 @@ TOTAL: {Convert.ToDecimal(factura["total"]):C2}";
         {
             using (System.IO.StreamWriter sw = new System.IO.StreamWriter(filePath, false, System.Text.Encoding.UTF8))
             {
+                string separador = ";"; // Usar punto y coma para Excel
+
                 // Escribir encabezados
                 for (int i = 0; i < dgvFacturas.Columns.Count; i++)
                 {
                     sw.Write(dgvFacturas.Columns[i].HeaderText);
                     if (i < dgvFacturas.Columns.Count - 1)
-                        sw.Write(",");
+                        sw.Write(separador);
                 }
                 sw.WriteLine();
 
@@ -353,15 +355,15 @@ TOTAL: {Convert.ToDecimal(factura["total"]):C2}";
                         if (row.Cells[i].Value != null)
                         {
                             string valor = row.Cells[i].Value.ToString();
-                            // Escapar comas y comillas
-                            if (valor.Contains(",") || valor.Contains("\"") || valor.Contains("\n"))
-                            {
+
+                            // Escapar comas, comillas, saltos de línea
+                            if (valor.Contains(";") || valor.Contains("\"") || valor.Contains("\n"))
                                 valor = "\"" + valor.Replace("\"", "\"\"") + "\"";
-                            }
+
                             sw.Write(valor);
                         }
                         if (i < dgvFacturas.Columns.Count - 1)
-                            sw.Write(",");
+                            sw.Write(separador);
                     }
                     sw.WriteLine();
                 }
