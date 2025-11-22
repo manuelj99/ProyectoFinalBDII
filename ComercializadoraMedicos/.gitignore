@@ -1,0 +1,13 @@
+# Archivos temporales de Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Archivos de Visual Studio Code
+.vscode/
+
+# Archivos temporales del sistema
+Thumbs.db
+*.cache
