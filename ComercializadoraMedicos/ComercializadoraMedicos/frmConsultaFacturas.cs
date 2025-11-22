@@ -332,41 +332,43 @@ TOTAL: {Convert.ToDecimal(factura["total"]):C2}";
             }
         }
 
-        private void ExportarACSV(string filePath)
-        {
-            using (System.IO.StreamWriter sw = new System.IO.StreamWriter(filePath, false, System.Text.Encoding.UTF8))
-            {
-                // Escribir encabezados
-                for (int i = 0; i < dgvFacturas.Columns.Count; i++)
-                {
-                    sw.Write(dgvFacturas.Columns[i].HeaderText);
-                    if (i < dgvFacturas.Columns.Count - 1)
-                        sw.Write(",");
-                }
-                sw.WriteLine();
-
-                // Escribir datos
-                foreach (DataGridViewRow row in dgvFacturas.Rows)
-                {
-                    for (int i = 0; i < dgvFacturas.Columns.Count; i++)
-                    {
-                        if (row.Cells[i].Value != null)
-                        {
-                            string valor = row.Cells[i].Value.ToString();
-                            // Escapar comas y comillas
-                            if (valor.Contains(",") || valor.Contains("\"") || valor.Contains("\n"))
-                            {
-                                valor = "\"" + valor.Replace("\"", "\"\"") + "\"";
-                            }
-                            sw.Write(valor);
-                        }
-                        if (i < dgvFacturas.Columns.Count - 1)
-                            sw.Write(",");
-                    }
-                    sw.WriteLine();
-                }
-            }
-        }
+         private void ExportarACSV(string filePath)
+         {
+             using (System.IO.StreamWriter sw = new System.IO.StreamWriter(filePath, false, System.Text.Encoding.UTF8))
+             {
+                 string separador = ";"; // Usar punto y coma para Excel
+        
+                 // Escribir encabezados
+                 for (int i = 0; i < dgvFacturas.Columns.Count; i++)
+                 {
+                     sw.Write(dgvFacturas.Columns[i].HeaderText);
+                     if (i < dgvFacturas.Columns.Count - 1)
+                         sw.Write(separador);
+                 }
+                 sw.WriteLine();
+        
+                 // Escribir datos
+                 foreach (DataGridViewRow row in dgvFacturas.Rows)
+                 {
+                     for (int i = 0; i < dgvFacturas.Columns.Count; i++)
+                     {
+                         if (row.Cells[i].Value != null)
+                         {
+                             string valor = row.Cells[i].Value.ToString();
+        
+                             // Escapar comas, comillas, saltos de línea
+                             if (valor.Contains(";") || valor.Contains("\"") || valor.Contains("\n"))
+                                 valor = "\"" + valor.Replace("\"", "\"\"") + "\"";
+        
+                             sw.Write(valor);
+                         }
+                         if (i < dgvFacturas.Columns.Count - 1)
+                             sw.Write(separador);
+                     }
+                     sw.WriteLine();
+                 }
+             }
+         }
 
         private void dgvFacturas_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
