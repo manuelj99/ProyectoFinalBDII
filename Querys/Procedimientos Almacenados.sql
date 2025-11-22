@@ -116,6 +116,16 @@ BEGIN
 END
 GO
 
+-- ELIMINAR Producto (eliminacion logica)
+CREATE OR ALTER PROCEDURE sp_Productos_Eliminar @id_producto INT
+AS
+BEGIN
+    UPDATE Productos
+    SET estado = 0
+    WHERE id_producto = @id_producto
+END
+GO
+
 -- OBTENER Productos con stock bajo
 CREATE OR ALTER PROCEDURE sp_Productos_ObtenerStockBajo
 AS

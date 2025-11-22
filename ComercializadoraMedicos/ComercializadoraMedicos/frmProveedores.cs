@@ -107,24 +107,14 @@ namespace ComercializadoraMedicos
                 DataGridViewRow row = dgvProveedores.SelectedRows[0];
                 int idProveedor = Convert.ToInt32(row.Cells["id_proveedor"].Value);
 
-                // Usar parámetros para evitar SQL injection
-                string query = "UPDATE Proveedores SET estado = 0 WHERE id_proveedor = @idProveedor";
-                SqlParameter[] parameters = { new SqlParameter("@idProveedor", idProveedor) };
+                SqlParameter[] parameters = { new SqlParameter("@id_proveedor", idProveedor) };
 
-                int affected = dbHelper.ExecuteNonQueryWithParameters(query, parameters);
+                // Llamada al SP sp_Proveedores_Eliminar
+                dbHelper.ExecuteStoredProcedure("sp_Proveedores_Eliminar", parameters);
 
-                if (affected > 0)
-                {
-                    MessageBox.Show("Proveedor eliminado correctamente.", "Éxito",
-                                  MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    CargarProveedores();
-                    LimpiarFormulario();
-                }
-                else
-                {
-                    MessageBox.Show("Error al eliminar el proveedor.", "Error",
-                                  MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                MessageBox.Show("Proveedor eliminado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                CargarProveedores();
+                LimpiarFormulario();
             }
         }
 
@@ -159,52 +149,38 @@ namespace ComercializadoraMedicos
 
         private void InsertarProveedor()
         {
-            string query = @"INSERT INTO Proveedores (nombre, direccion, telefono, email, limite_credito) 
-                            VALUES (@nombre, @direccion, @telefono, @email, @limite_credito)";
-
+            // 1. Definimos los parámetros que pide el SP sp_Proveedores_Insertar
             SqlParameter[] parameters = {
-                new SqlParameter("@nombre", txtNombre.Text),
-                new SqlParameter("@direccion", txtDireccion.Text),
-                new SqlParameter("@telefono", txtTelefono.Text),
-                new SqlParameter("@email", txtEmail.Text),
-                new SqlParameter("@limite_credito", decimal.Parse(txtLimiteCredito.Text))
+            new SqlParameter("@nombre", txtNombre.Text.Trim()),
+            new SqlParameter("@direccion", txtDireccion.Text.Trim()),
+            new SqlParameter("@telefono", txtTelefono.Text.Trim()),
+            new SqlParameter("@email", txtEmail.Text.Trim()),
+            new SqlParameter("@limite_credito", decimal.Parse(txtLimiteCredito.Text))
             };
 
-            int affected = dbHelper.ExecuteNonQueryWithParameters(query, parameters);
-
-            if (affected > 0)
+            // 2. Ejecutamos el Stored Procedure en lugar del query directo
+            DataTable result = dbHelper.ExecuteStoredProcedure("sp_Proveedores_Insertar", parameters);
+            if (result != null && result.Rows.Count > 0)
             {
-                MessageBox.Show("Proveedor agregado correctamente.", "Éxito",
-                              MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Proveedor agregado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
         private void ActualizarProveedor()
         {
-            string query = @"UPDATE Proveedores 
-                            SET nombre = @nombre,
-                                direccion = @direccion,
-                                telefono = @telefono,
-                                email = @email,
-                                limite_credito = @limite_credito
-                            WHERE id_proveedor = @id_proveedor";
-
             SqlParameter[] parameters = {
-                new SqlParameter("@nombre", txtNombre.Text),
-                new SqlParameter("@direccion", txtDireccion.Text),
-                new SqlParameter("@telefono", txtTelefono.Text),
-                new SqlParameter("@email", txtEmail.Text),
-                new SqlParameter("@limite_credito", decimal.Parse(txtLimiteCredito.Text)),
-                new SqlParameter("@id_proveedor", proveedorIdActual)
+            new SqlParameter("@id_proveedor", proveedorIdActual),
+            new SqlParameter("@nombre", txtNombre.Text.Trim()),
+            new SqlParameter("@direccion", txtDireccion.Text.Trim()),
+            new SqlParameter("@telefono", txtTelefono.Text.Trim()),
+            new SqlParameter("@email", txtEmail.Text.Trim()),
+            new SqlParameter("@limite_credito", decimal.Parse(txtLimiteCredito.Text))
             };
 
-            int affected = dbHelper.ExecuteNonQueryWithParameters(query, parameters);
+            // Llamada al SP sp_Proveedores_Actualizar
+            dbHelper.ExecuteStoredProcedure("sp_Proveedores_Actualizar", parameters);
 
-            if (affected > 0)
-            {
-                MessageBox.Show("Proveedor actualizado correctamente.", "Éxito",
-                              MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            MessageBox.Show("Proveedor actualizado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)

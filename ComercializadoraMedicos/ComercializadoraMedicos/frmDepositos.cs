@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Data.SqlClient;
 using System.Windows.Forms;
 
 namespace ComercializadoraMedicos
@@ -40,33 +41,25 @@ namespace ComercializadoraMedicos
 
         private void btnGuardarDeposito_Click(object sender, EventArgs e)
         {
-            if (!ValidarDatos())
-                return;
+            if (!ValidarDatos()) return;
 
             try
             {
-                string query = $@"INSERT INTO Depositos (id_banco, fecha_deposito, monto, descripcion)
-                                VALUES ({cmbBanco.SelectedValue}, '{dtpFechaDeposito.Value:yyyy-MM-dd}', 
-                                        {decimal.Parse(txtMonto.Text)}, '{txtDescripcion.Text}')";
+                SqlParameter[] parameters = {
+                new SqlParameter("@id_banco", cmbBanco.SelectedValue),
+                new SqlParameter("@monto", decimal.Parse(txtMonto.Text)),
+                new SqlParameter("@descripcion", txtDescripcion.Text.Trim())
+                };
 
-                int affected = dbHelper.ExecuteNonQuery(query);
+                // Llamada al SP transaccional
+                dbHelper.ExecuteStoredProcedure("sp_Depositos_Insertar", parameters);
 
-                if (affected > 0)
-                {
-                    // Actualizar saldo del banco
-                    string updateQuery = $@"UPDATE Bancos SET saldo = saldo + {decimal.Parse(txtMonto.Text)} 
-                                          WHERE id_banco = {cmbBanco.SelectedValue}";
-                    dbHelper.ExecuteNonQuery(updateQuery);
-
-                    MessageBox.Show("Depósito registrado correctamente.", "Éxito",
-                                  MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Close();
-                }
+                MessageBox.Show("Depósito registrado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al registrar depósito: {ex.Message}", "Error",
-                              MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error al registrar depósito: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

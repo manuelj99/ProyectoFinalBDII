@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Data.SqlClient;
 using System.Windows.Forms;
 
 namespace ComercializadoraMedicos
@@ -146,32 +147,23 @@ namespace ComercializadoraMedicos
                 string query;
                 if (existe)
                 {
-                    // Actualizar arqueo existente
-                    query = $@"UPDATE ArqueosCaja 
-                              SET total_ventas_contado = {ventasContado},
-                                  total_pagos_recibidos = {pagosRecibidos},
-                                  total_depositado = {totalDepositado},
-                                  diferencia = {diferencia},
-                                  observaciones = '{txtObservaciones.Text}'
-                              WHERE fecha_arqueo = '{fecha}'";
+                    MessageBox.Show("Ya existe un arqueo para esta fecha. La edición requiere un procedimiento adicional.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return; // O implementa sp_ArqueosCaja_Actualizar en SQL si deseas editar
                 }
                 else
                 {
-                    // Insertar nuevo arqueo
-                    query = $@"INSERT INTO ArqueosCaja 
-                              (fecha_arqueo, total_ventas_contado, total_pagos_recibidos, 
-                               total_depositado, diferencia, observaciones) 
-                              VALUES 
-                              ('{fecha}', {ventasContado}, {pagosRecibidos}, 
-                               {totalDepositado}, {diferencia}, '{txtObservaciones.Text}')";
-                }
+                    // Usamos sp_ArqueosCaja_Insertar
+                    SqlParameter[] parameters = {
+                    new SqlParameter("@total_ventas_contado", ventasContado),
+                    new SqlParameter("@total_pagos_recibidos", pagosRecibidos),
+                    new SqlParameter("@total_depositado", totalDepositado),
+                    new SqlParameter("@observaciones", txtObservaciones.Text)
+                    };
 
-                int affected = dbHelper.ExecuteNonQuery(query);
+                    // El SP calcula la diferencia internamente
+                    dbHelper.ExecuteStoredProcedure("sp_ArqueosCaja_Insertar", parameters);
 
-                if (affected > 0)
-                {
-                    MessageBox.Show("Arqueo de caja guardado correctamente.", "Éxito",
-                                  MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Arqueo de caja guardado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     LimpiarFormulario();
                 }
             }
