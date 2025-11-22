@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -244,36 +245,34 @@ namespace ComercializadoraMedicos
 
         private void InsertarBanco()
         {
-            string query = $@"INSERT INTO Bancos 
-                            (nombre_banco, numero_cuenta, saldo) 
-                            VALUES 
-                            ('{txtNombreBanco.Text}', '{txtNumeroCuenta.Text}', 
-                             {decimal.Parse(txtSaldoInicial.Text)})";
+                SqlParameter[] parameters = {
+            new SqlParameter("@nombre_banco", txtNombreBanco.Text.Trim()),
+            new SqlParameter("@numero_cuenta", txtNumeroCuenta.Text.Trim()),
+            new SqlParameter("@saldo", decimal.Parse(txtSaldoInicial.Text))
+            };
 
-            int affected = dbHelper.ExecuteNonQuery(query);
+            // Llamamos al SP sp_Bancos_Insertar
+            DataTable result = dbHelper.ExecuteStoredProcedure("sp_Bancos_Insertar", parameters);
 
-            if (affected > 0)
+            if (result != null && result.Rows.Count > 0)
             {
-                MessageBox.Show("Cuenta bancaria agregada correctamente.", "Éxito",
-                              MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Cuenta bancaria agregada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
         private void ActualizarBanco()
         {
-            string query = $@"UPDATE Bancos 
-                            SET nombre_banco = '{txtNombreBanco.Text}',
-                                numero_cuenta = '{txtNumeroCuenta.Text}',
-                                saldo = {decimal.Parse(txtSaldoInicial.Text)}
-                            WHERE id_banco = {bancoIdActual}";
+            SqlParameter[] parameters = {
+            new SqlParameter("@id_banco", bancoIdActual),
+            new SqlParameter("@nombre_banco", txtNombreBanco.Text.Trim()),
+            new SqlParameter("@numero_cuenta", txtNumeroCuenta.Text.Trim()),
+            new SqlParameter("@saldo", decimal.Parse(txtSaldoInicial.Text))
+            };
 
-            int affected = dbHelper.ExecuteNonQuery(query);
+            // Llamamos al SP sp_Bancos_Actualizar
+            dbHelper.ExecuteStoredProcedure("sp_Bancos_Actualizar", parameters);
 
-            if (affected > 0)
-            {
-                MessageBox.Show("Cuenta bancaria actualizada correctamente.", "Éxito",
-                              MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            MessageBox.Show("Cuenta bancaria actualizada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnEliminarBanco_Click(object sender, EventArgs e)
@@ -293,16 +292,14 @@ namespace ComercializadoraMedicos
                 DataGridViewRow row = dgvBancos.SelectedRows[0];
                 int idBanco = Convert.ToInt32(row.Cells["id_banco"].Value);
 
-                string query = $"UPDATE Bancos SET estado = 0 WHERE id_banco = {idBanco}";
-                int affected = dbHelper.ExecuteNonQuery(query);
+                SqlParameter[] parameters = { new SqlParameter("@id_banco", idBanco) };
 
-                if (affected > 0)
-                {
-                    MessageBox.Show("Cuenta bancaria eliminada correctamente.", "Éxito",
-                                  MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    CargarBancos();
-                    LimpiarFormulario();
-                }
+                // Llamamos al SP sp_Bancos_Eliminar
+                dbHelper.ExecuteStoredProcedure("sp_Bancos_Eliminar", parameters);
+
+                MessageBox.Show("Cuenta bancaria eliminada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                CargarBancos();
+                LimpiarFormulario();
             }
         }
 
