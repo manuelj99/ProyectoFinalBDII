@@ -193,12 +193,14 @@ namespace ComercializadoraMedicos
         {
             using (System.IO.StreamWriter sw = new System.IO.StreamWriter(filePath, false, System.Text.Encoding.UTF8))
             {
+                string separador = ";"; // Usar punto y coma para Excel
+
                 // Escribir encabezados
                 for (int i = 0; i < dgvReportes.Columns.Count; i++)
                 {
                     sw.Write(dgvReportes.Columns[i].HeaderText);
                     if (i < dgvReportes.Columns.Count - 1)
-                        sw.Write(",");
+                        sw.Write(separador);
                 }
                 sw.WriteLine();
 
@@ -210,15 +212,15 @@ namespace ComercializadoraMedicos
                         if (row.Cells[i].Value != null)
                         {
                             string valor = row.Cells[i].Value.ToString();
-                            // Escapar comas y comillas
-                            if (valor.Contains(",") || valor.Contains("\"") || valor.Contains("\n"))
-                            {
+
+                            // Escapar comas, comillas, saltos de línea
+                            if (valor.Contains(";") || valor.Contains("\"") || valor.Contains("\n"))
                                 valor = "\"" + valor.Replace("\"", "\"\"") + "\"";
-                            }
+
                             sw.Write(valor);
                         }
                         if (i < dgvReportes.Columns.Count - 1)
-                            sw.Write(",");
+                            sw.Write(separador);
                     }
                     sw.WriteLine();
                 }
