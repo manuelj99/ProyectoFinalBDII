@@ -1,17 +1,21 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Manuel Castro\\Documents\\Base Datos II\\ProyectoFinal\\ComercializadoraMedicos\\",
+  "WorkspaceRootPath": "C:\\Users\\Manuel Castro\\Documents\\GitHub\\ProyectoFinalBDII\\ComercializadoraMedicos\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{697AEEDD-3C6E-459F-B12D-021A063E67BE}|ComercializadoraMedicos\\ComercializadoraMedicos.csproj|c:\\users\\manuel castro\\documents\\base datos ii\\proyectofinal\\comercializadoramedicos\\comercializadoramedicos\\databasehelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{697AEEDD-3C6E-459F-B12D-021A063E67BE}|ComercializadoraMedicos\\ComercializadoraMedicos.csproj|c:\\users\\manuel castro\\documents\\github\\proyectofinalbdii\\comercializadoramedicos\\comercializadoramedicos\\frmproveedores.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{697AEEDD-3C6E-459F-B12D-021A063E67BE}|ComercializadoraMedicos\\ComercializadoraMedicos.csproj|solutionrelative:comercializadoramedicos\\frmproveedores.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{697AEEDD-3C6E-459F-B12D-021A063E67BE}|ComercializadoraMedicos\\ComercializadoraMedicos.csproj|c:\\users\\manuel castro\\documents\\github\\proyectofinalbdii\\comercializadoramedicos\\comercializadoramedicos\\databasehelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{697AEEDD-3C6E-459F-B12D-021A063E67BE}|ComercializadoraMedicos\\ComercializadoraMedicos.csproj|solutionrelative:comercializadoramedicos\\databasehelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{697AEEDD-3C6E-459F-B12D-021A063E67BE}|ComercializadoraMedicos\\ComercializadoraMedicos.csproj|c:\\users\\manuel castro\\documents\\base datos ii\\proyectofinal\\comercializadoramedicos\\comercializadoramedicos\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{697AEEDD-3C6E-459F-B12D-021A063E67BE}|ComercializadoraMedicos\\ComercializadoraMedicos.csproj|C:\\Users\\Manuel Castro\\Documents\\GitHub\\ProyectoFinalBDII\\ComercializadoraMedicos\\comercializadoramedicos\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{697AEEDD-3C6E-459F-B12D-021A063E67BE}|ComercializadoraMedicos\\ComercializadoraMedicos.csproj|solutionrelative:comercializadoramedicos\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{697AEEDD-3C6E-459F-B12D-021A063E67BE}|ComercializadoraMedicos\\ComercializadoraMedicos.csproj|c:\\users\\manuel castro\\documents\\base datos ii\\proyectofinal\\comercializadoramedicos\\comercializadoramedicos\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{697AEEDD-3C6E-459F-B12D-021A063E67BE}|ComercializadoraMedicos\\ComercializadoraMedicos.csproj|C:\\Users\\Manuel Castro\\Documents\\GitHub\\ProyectoFinalBDII\\ComercializadoraMedicos\\comercializadoramedicos\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{697AEEDD-3C6E-459F-B12D-021A063E67BE}|ComercializadoraMedicos\\ComercializadoraMedicos.csproj|solutionrelative:comercializadoramedicos\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -22,40 +26,51 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "MainForm.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\Manuel Castro\\Documents\\Base Datos II\\ProyectoFinal\\ComercializadoraMedicos\\ComercializadoraMedicos\\MainForm.cs",
-              "RelativeDocumentMoniker": "ComercializadoraMedicos\\MainForm.cs",
-              "ToolTip": "C:\\Users\\Manuel Castro\\Documents\\Base Datos II\\ProyectoFinal\\ComercializadoraMedicos\\ComercializadoraMedicos\\MainForm.cs [Dise\u00F1o]",
-              "RelativeToolTip": "ComercializadoraMedicos\\MainForm.cs [Dise\u00F1o]",
+              "DocumentIndex": 0,
+              "Title": "frmProveedores.cs",
+              "DocumentMoniker": "C:\\Users\\Manuel Castro\\Documents\\GitHub\\ProyectoFinalBDII\\ComercializadoraMedicos\\ComercializadoraMedicos\\frmProveedores.cs",
+              "RelativeDocumentMoniker": "ComercializadoraMedicos\\frmProveedores.cs",
+              "ToolTip": "C:\\Users\\Manuel Castro\\Documents\\GitHub\\ProyectoFinalBDII\\ComercializadoraMedicos\\ComercializadoraMedicos\\frmProveedores.cs",
+              "RelativeToolTip": "ComercializadoraMedicos\\frmProveedores.cs",
+              "ViewState": "AgIAAGMAAAAAAAAAAAAmwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-20T20:56:44.006Z",
-              "EditorCaption": " [Dise\u00F1o]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "MainForm.cs",
-              "DocumentMoniker": "C:\\Users\\Manuel Castro\\Documents\\Base Datos II\\ProyectoFinal\\ComercializadoraMedicos\\ComercializadoraMedicos\\MainForm.cs",
-              "RelativeDocumentMoniker": "ComercializadoraMedicos\\MainForm.cs",
-              "ToolTip": "C:\\Users\\Manuel Castro\\Documents\\Base Datos II\\ProyectoFinal\\ComercializadoraMedicos\\ComercializadoraMedicos\\MainForm.cs",
-              "RelativeToolTip": "ComercializadoraMedicos\\MainForm.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAuwBsAAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-20T17:37:18.44Z",
+              "WhenOpened": "2025-11-21T23:56:41.67Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
+              "Title": "MainForm.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Manuel Castro\\Documents\\GitHub\\ProyectoFinalBDII\\ComercializadoraMedicos\\ComercializadoraMedicos\\MainForm.cs",
+              "RelativeDocumentMoniker": "ComercializadoraMedicos\\MainForm.cs",
+              "ToolTip": "C:\\Users\\Manuel Castro\\Documents\\Base Datos II\\ProyectoFinal\\ComercializadoraMedicos\\ComercializadoraMedicos\\MainForm.cs [Dise\u00F1o]",
+              "RelativeToolTip": "..\\..\\..\\Base Datos II\\ProyectoFinal\\ComercializadoraMedicos\\ComercializadoraMedicos\\MainForm.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-20T20:56:44.006Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MainForm.cs",
+              "DocumentMoniker": "C:\\Users\\Manuel Castro\\Documents\\GitHub\\ProyectoFinalBDII\\ComercializadoraMedicos\\ComercializadoraMedicos\\MainForm.cs",
+              "RelativeDocumentMoniker": "ComercializadoraMedicos\\MainForm.cs",
+              "ToolTip": "C:\\Users\\Manuel Castro\\Documents\\GitHub\\ProyectoFinalBDII\\ComercializadoraMedicos\\ComercializadoraMedicos\\MainForm.cs",
+              "RelativeToolTip": "ComercializadoraMedicos\\MainForm.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAuwBsAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-20T17:37:18.44Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "DatabaseHelper.cs",
-              "DocumentMoniker": "C:\\Users\\Manuel Castro\\Documents\\Base Datos II\\ProyectoFinal\\ComercializadoraMedicos\\ComercializadoraMedicos\\DatabaseHelper.cs",
+              "DocumentMoniker": "C:\\Users\\Manuel Castro\\Documents\\GitHub\\ProyectoFinalBDII\\ComercializadoraMedicos\\ComercializadoraMedicos\\DatabaseHelper.cs",
               "RelativeDocumentMoniker": "ComercializadoraMedicos\\DatabaseHelper.cs",
-              "ToolTip": "C:\\Users\\Manuel Castro\\Documents\\Base Datos II\\ProyectoFinal\\ComercializadoraMedicos\\ComercializadoraMedicos\\DatabaseHelper.cs",
+              "ToolTip": "C:\\Users\\Manuel Castro\\Documents\\GitHub\\ProyectoFinalBDII\\ComercializadoraMedicos\\ComercializadoraMedicos\\DatabaseHelper.cs",
               "RelativeToolTip": "ComercializadoraMedicos\\DatabaseHelper.cs",
               "ViewState": "AgIAACQAAAAAAAAAAAAowCwAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",

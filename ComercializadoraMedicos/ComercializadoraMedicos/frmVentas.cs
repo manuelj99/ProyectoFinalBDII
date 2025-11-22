@@ -354,7 +354,8 @@ namespace ComercializadoraMedicos
                 string query = $@"EXEC spTransaccionVentaCompleta 
                                 {clienteIdActual}, 
                                 '{cmbTipoVenta.Text}', 
-                                '{detallesJSON}'";
+                                '{detallesJSON}',
+                                1";
 
                 DataTable result = dbHelper.ExecuteQuery(query);
 
