@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Data;
-using System.Data.SqlClient;
 using System.Windows.Forms;
 
 namespace ComercializadoraMedicos
@@ -144,26 +143,35 @@ namespace ComercializadoraMedicos
                 DataTable dtVerificar = dbHelper.ExecuteQuery(queryVerificar);
                 bool existe = Convert.ToInt32(dtVerificar.Rows[0]["existe"]) > 0;
 
+                string query;
                 if (existe)
                 {
-                    MessageBox.Show("Ya existe un arqueo para esta fecha. La edición requiere un procedimiento adicional.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return; // O implementa sp_ArqueosCaja_Actualizar en SQL si deseas editar
+                    // Actualizar arqueo existente
+                    query = $@"UPDATE ArqueosCaja 
+                              SET total_ventas_contado = {ventasContado},
+                                  total_pagos_recibidos = {pagosRecibidos},
+                                  total_depositado = {totalDepositado},
+                                  diferencia = {diferencia},
+                                  observaciones = '{txtObservaciones.Text}'
+                              WHERE fecha_arqueo = '{fecha}'";
                 }
                 else
                 {
-                    // Usamos sp_ArqueosCaja_Insertar
-                    SqlParameter[] parameters = {
-                    new SqlParameter("@total_ventas_contado", ventasContado),
-                    new SqlParameter("@total_pagos_recibidos", pagosRecibidos),
-                    new SqlParameter("@total_depositado", totalDepositado),
-                    new SqlParameter("@observaciones", txtObservaciones.Text)
-                    };
+                    // Insertar nuevo arqueo
+                    query = $@"INSERT INTO ArqueosCaja 
+                              (fecha_arqueo, total_ventas_contado, total_pagos_recibidos, 
+                               total_depositado, diferencia, observaciones) 
+                              VALUES 
+                              ('{fecha}', {ventasContado}, {pagosRecibidos}, 
+                               {totalDepositado}, {diferencia}, '{txtObservaciones.Text}')";
+                }
 
-                    // El SP calcula la diferencia internamente
+                int affected = dbHelper.ExecuteNonQuery(query);
 
-                    dbHelper.ExecuteStoredProcedure("sp_ArqueosCaja_Insertar", parameters);
-
-                    MessageBox.Show("Arqueo de caja guardado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (affected > 0)
+                {
+                    MessageBox.Show("Arqueo de caja guardado correctamente.", "Éxito",
+                                  MessageBoxButtons.OK, MessageBoxIcon.Information);
                     LimpiarFormulario();
                 }
             }

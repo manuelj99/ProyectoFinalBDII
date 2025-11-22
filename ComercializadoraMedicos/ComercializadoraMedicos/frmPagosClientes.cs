@@ -206,35 +206,42 @@ namespace ComercializadoraMedicos
         {
             try
             {
-                // USAMOS EL SP: sp_PagosClientes_Insertar
-                // Este SP ya inserta el pago Y actualiza el saldo del cliente automáticamente en SQL.
-                SqlParameter[] parameters = {
-            new SqlParameter("@id_cliente", clienteIdActual),
-            new SqlParameter("@monto", montoPago)
-        };
+                // Usar el procedimiento almacenado para insertar el pago
+                string query = $@"INSERT INTO PagosClientes (id_cliente, fecha_pago, monto, estado)
+                                VALUES ({clienteIdActual}, GETDATE(), {montoPago}, 'Aplicado')";
 
-                DataTable result = dbHelper.ExecuteStoredProcedure("sp_PagosClientes_Insertar", parameters);
+                int affected = dbHelper.ExecuteNonQuery(query);
 
-                if (result != null && result.Rows.Count > 0)
+                if (affected > 0)
                 {
-                    // Aplicar lógica de FIFO a las facturas en C# (esto está bien mantenerlo aquí o moverlo a un SP avanzado)
-                    // Nota: El SP devuelve el ID del pago, lo usamos para confirmar.
+                    // Actualizar saldo del cliente
+                    string updateCliente = $@"UPDATE Clientes 
+                                            SET saldo_actual = saldo_actual - {montoPago}
+                                            WHERE id_cliente = {clienteIdActual}";
+                    dbHelper.ExecuteNonQuery(updateCliente);
+
+                    // Aplicar el pago a las ventas pendientes (método FIFO)
                     AplicarPagoAVentas(montoPago);
 
-                    MessageBox.Show($"Pago procesado exitosamente!\nCliente: {cmbCliente.Text}\nMonto: {montoPago:C2}",
-                        "Pago Exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show($"✅ Pago procesado exitosamente!\n\n" +
+                                  $"Cliente: {cmbCliente.Text}\n" +
+                                  $"Monto: {montoPago:C2}",
+                                  "Pago Exitoso",
+                                  MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     LimpiarFormulario();
-                    CargarClientes();
+                    CargarClientes(); // Recargar clientes para actualizar saldos
                 }
                 else
                 {
-                    MessageBox.Show("No se pudo procesar el pago.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("❌ No se pudo procesar el pago.", "Error",
+                                  MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al procesar el pago: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"❌ Error al procesar el pago: {ex.Message}", "Error",
+                              MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

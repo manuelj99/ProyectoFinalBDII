@@ -49,6 +49,7 @@ namespace ComercializadoraMedicos
             dgvProductos.DataSource = dt;
 
             ConfigurarDataGridView();
+            //lblResultados.Text = $"Total de productos: {dt.Rows.Count}";
         }
 
         private void ConfigurarDataGridView()
@@ -134,6 +135,7 @@ namespace ComercializadoraMedicos
 
                 DataTable dt = dbHelper.ExecuteQuery(query);
                 dgvProductos.DataSource = dt;
+                //lblResultados.Text = $"Se encontraron {dt.Rows.Count} productos";
             }
             catch (Exception ex)
             {
@@ -228,47 +230,51 @@ namespace ComercializadoraMedicos
 
         private void InsertarProducto()
         {
-            int idCategoria = cmbCategoria.SelectedValue != null ? Convert.ToInt32(cmbCategoria.SelectedValue) : 0;
+            int idCategoria = cmbCategoria.SelectedValue != null ?
+                            Convert.ToInt32(cmbCategoria.SelectedValue) : 0;
 
-            SqlParameter[] parameters = {
-            new SqlParameter("@codigo", txtCodigo.Text.Trim()),
-            new SqlParameter("@nombre", txtNombre.Text.Trim()),
-            new SqlParameter("@descripcion", txtDescripcion.Text.Trim()),
-            new SqlParameter("@id_categoria", idCategoria),
-            new SqlParameter("@tipo", cmbTipo.Text),
-            new SqlParameter("@precio_compra", decimal.Parse(txtPrecioCompra.Text)),
-            new SqlParameter("@precio_venta", decimal.Parse(txtPrecioVenta.Text)),
-            new SqlParameter("@stock_minimo", int.Parse(txtStockMinimo.Text)),
-            new SqlParameter("@es_materia_prima", chkMateriaPrima.Checked) // El driver convierte bool a BIT automáticamente
-            };
+            string query = $@"INSERT INTO Productos 
+                            (codigo, nombre, descripcion, id_categoria, tipo, 
+                             precio_compra, precio_venta, stock_minimo, es_materia_prima) 
+                            VALUES 
+                            ('{txtCodigo.Text}', '{txtNombre.Text}', '{txtDescripcion.Text}', 
+                             {idCategoria}, '{cmbTipo.Text}', {decimal.Parse(txtPrecioCompra.Text)}, 
+                             {decimal.Parse(txtPrecioVenta.Text)}, {int.Parse(txtStockMinimo.Text)}, 
+                             {(chkMateriaPrima.Checked ? 1 : 0)})";
 
-            DataTable result = dbHelper.ExecuteStoredProcedure("sp_Productos_Insertar", parameters);
+            int affected = dbHelper.ExecuteNonQuery(query);
 
-            if (result != null && result.Rows.Count > 0)
+            if (affected > 0)
             {
-                MessageBox.Show("Producto agregado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Producto agregado correctamente.", "Éxito",
+                              MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
         private void ActualizarProducto()
         {
-            int idCategoria = cmbCategoria.SelectedValue != null ? Convert.ToInt32(cmbCategoria.SelectedValue) : 0;
+            int idCategoria = cmbCategoria.SelectedValue != null ?
+                            Convert.ToInt32(cmbCategoria.SelectedValue) : 0;
 
-            SqlParameter[] parameters = {
-            new SqlParameter("@id_producto", productoIdActual),
-            new SqlParameter("@codigo", txtCodigo.Text.Trim()),
-            new SqlParameter("@nombre", txtNombre.Text.Trim()),
-            new SqlParameter("@descripcion", txtDescripcion.Text.Trim()),
-            new SqlParameter("@id_categoria", idCategoria),
-            new SqlParameter("@tipo", cmbTipo.Text),
-            new SqlParameter("@precio_compra", decimal.Parse(txtPrecioCompra.Text)),
-            new SqlParameter("@precio_venta", decimal.Parse(txtPrecioVenta.Text)),
-            new SqlParameter("@stock_minimo", int.Parse(txtStockMinimo.Text)),
-            new SqlParameter("@es_materia_prima", chkMateriaPrima.Checked)
-            };
+            string query = $@"UPDATE Productos 
+                            SET codigo = '{txtCodigo.Text}',
+                                nombre = '{txtNombre.Text}',
+                                descripcion = '{txtDescripcion.Text}',
+                                id_categoria = {idCategoria},
+                                tipo = '{cmbTipo.Text}',
+                                precio_compra = {decimal.Parse(txtPrecioCompra.Text)},
+                                precio_venta = {decimal.Parse(txtPrecioVenta.Text)},
+                                stock_minimo = {int.Parse(txtStockMinimo.Text)},
+                                es_materia_prima = {(chkMateriaPrima.Checked ? 1 : 0)}
+                            WHERE id_producto = {productoIdActual}";
 
-            dbHelper.ExecuteStoredProcedure("sp_Productos_Actualizar", parameters);
-            MessageBox.Show("Producto actualizado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            int affected = dbHelper.ExecuteNonQuery(query);
+
+            if (affected > 0)
+            {
+                MessageBox.Show("Producto actualizado correctamente.", "Éxito",
+                              MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)

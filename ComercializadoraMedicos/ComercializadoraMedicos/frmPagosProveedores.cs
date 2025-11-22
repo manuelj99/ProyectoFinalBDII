@@ -72,7 +72,7 @@ namespace ComercializadoraMedicos
                     string query = $@"SELECT oc.id_orden_compra, oc.fecha_orden, oc.total, oc.estado
                                     FROM OrdenesCompra oc
                                     WHERE oc.id_proveedor = {proveedorIdActual}
-                                    AND oc.estado = 'Recibida'
+                                    AND oc.estado = 'Aprobada'
                                     AND oc.total > ISNULL((SELECT SUM(pp.monto) 
                                                          FROM PagosProveedores pp 
                                                          WHERE pp.id_proveedor = {proveedorIdActual} 

@@ -186,37 +186,40 @@ namespace ComercializadoraMedicos
 
         private void InsertarCliente()
         {
-            SqlParameter[] parameters = {
-            new SqlParameter("@nombre", txtNombre.Text.Trim()),
-            new SqlParameter("@direccion", txtDireccion.Text.Trim()),
-            new SqlParameter("@telefono", txtTelefono.Text.Trim()),
-            new SqlParameter("@email", txtEmail.Text.Trim()),
-            new SqlParameter("@limite_credito", decimal.Parse(txtLimiteCredito.Text)),
-            new SqlParameter("@tipo_cliente", cmbTipoCliente.Text)
-            };
+            string query = $@"INSERT INTO Clientes 
+                            (nombre, direccion, telefono, email, limite_credito, tipo_cliente) 
+                            VALUES 
+                            ('{txtNombre.Text}', '{txtDireccion.Text}', '{txtTelefono.Text}', 
+                             '{txtEmail.Text}', {decimal.Parse(txtLimiteCredito.Text)}, 
+                             '{cmbTipoCliente.Text}')";
 
-            DataTable result = dbHelper.ExecuteStoredProcedure("sp_Clientes_Insertar", parameters);
+            int affected = dbHelper.ExecuteNonQuery(query);
 
-            if (result != null && result.Rows.Count > 0)
+            if (affected > 0)
             {
-                MessageBox.Show("Cliente agregado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Cliente agregado correctamente.", "Éxito",
+                              MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
         private void ActualizarCliente()
         {
-            SqlParameter[] parameters = {
-            new SqlParameter("@id_cliente", clienteIdActual),
-            new SqlParameter("@nombre", txtNombre.Text.Trim()),
-            new SqlParameter("@direccion", txtDireccion.Text.Trim()),
-            new SqlParameter("@telefono", txtTelefono.Text.Trim()),
-            new SqlParameter("@email", txtEmail.Text.Trim()),
-            new SqlParameter("@limite_credito", decimal.Parse(txtLimiteCredito.Text)),
-            new SqlParameter("@tipo_cliente", cmbTipoCliente.Text)
-            };
+            string query = $@"UPDATE Clientes 
+                            SET nombre = '{txtNombre.Text}',
+                                direccion = '{txtDireccion.Text}',
+                                telefono = '{txtTelefono.Text}',
+                                email = '{txtEmail.Text}',
+                                limite_credito = {decimal.Parse(txtLimiteCredito.Text)},
+                                tipo_cliente = '{cmbTipoCliente.Text}'
+                            WHERE id_cliente = {clienteIdActual}";
 
-            dbHelper.ExecuteStoredProcedure("sp_Clientes_Actualizar", parameters);
-            MessageBox.Show("Cliente actualizado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            int affected = dbHelper.ExecuteNonQuery(query);
+
+            if (affected > 0)
+            {
+                MessageBox.Show("Cliente actualizado correctamente.", "Éxito",
+                              MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -236,12 +239,16 @@ namespace ComercializadoraMedicos
                 DataGridViewRow row = dgvClientes.SelectedRows[0];
                 int idCliente = Convert.ToInt32(row.Cells["id_cliente"].Value);
 
-                SqlParameter[] parameters = { new SqlParameter("@id_cliente", idCliente) };
-                dbHelper.ExecuteStoredProcedure("sp_Clientes_Eliminar", parameters);
-                MessageBox.Show("Cliente eliminado correctamente.", "Éxito",
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
-                CargarClientes();
-                LimpiarFormulario();
+                string query = $"UPDATE Clientes SET estado = 0 WHERE id_cliente = {idCliente}";
+                int affected = dbHelper.ExecuteNonQuery(query);
+
+                if (affected > 0)
+                {
+                    MessageBox.Show("Cliente eliminado correctamente.", "Éxito",
+                                  MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    CargarClientes();
+                    LimpiarFormulario();
+                }
             }
         }
 

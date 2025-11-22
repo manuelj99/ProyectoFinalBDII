@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DatabaseHelper.cs" />
+    <Compile Include="UIHelper.cs" />
     <Compile Include="frmArqueoCaja.cs">
       <SubType>Form</SubType>
     </Compile>
